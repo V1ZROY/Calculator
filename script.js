@@ -1,12 +1,114 @@
 const buttons = document.querySelectorAll('button');
-const answerDisplay = document.querySelector('#answerDisplay')
-const operationDisplay = document.querySelector('#operationDisplay')
-function buttonpress(){
-    console.log(this.innerHTML);
+let answerDisplay = document.querySelector('#answerDisplay p')
+let operationDisplay = document.querySelector('#operationDisplay p')
+
+let operation = '';
+let currentNumber = '';
+let previousNumber = '';
+let answer = '';
+let result;
+
+function buttonpress(input){
+    switch(input.target.innerHTML){
+        case 'Clear': clear();
+        break;
+
+        case 'Delete': backspace();
+        break;
+        
+        case '=':
+        case '÷':
+        case 'x':
+        case '-':
+        case '+': startOperation(this.innerHTML);
+        break;
+
+        default: write(this.innerHTML);
+    }
+    
+    
 }
 
-console.log(buttons)
+function startOperation(operand){
+
+    if (operation=='' && currentNumber!='' && operand!='='){
+        previousNumber = currentNumber;
+        currentNumber = '';
+        operation += operand;
+        write('');
+    }
 
 
+    if (currentNumber!='' && previousNumber!=''){
+        switch(operation){
+            case '÷': divide(previousNumber, currentNumber); 
+            break;
+            case 'x': multiply(previousNumber, currentNumber); 
+            break;
+            case '-': subtract(previousNumber, currentNumber); 
+            break;
+            case '+': add(previousNumber, currentNumber); 
+            break;
+            default: write('');
+        }
+    }
+}
+
+function divide(x, y){
+    answer = x/y;
+    previousNumber = '';
+    operation = '';
+    currentNumber = answer;
+    write('');
+}
+
+function multiply(x, y){
+    answer = x*y;
+    previousNumber = '';
+    operation = '';
+    currentNumber = answer;
+    write('');
+}
+
+function add(x, y){
+    answer = parseInt(x)+parseInt(y);
+    previousNumber = '';
+    operation = '';
+    currentNumber = answer;
+    write('');
+}
+
+function subtract(x, y){
+    answer = x-y;
+    previousNumber = '';
+    operation = '';
+    currentNumber = answer;
+    write('');
+}
+
+function clear(){
+    operationDisplay.textContent = '';
+    answerDisplay.textContent = '';
+    currentNumber='';
+    previousNumber='';
+    operation='';
+    answer = '';
+}
+
+function backspace(){
+    currentNumber = currentNumber.split('')
+    currentNumber.pop();
+    currentNumber = currentNumber.join('')
+    write('')
+}
+
+function write(input){
+    if (currentNumber!= '' && currentNumber.toString().includes('.') && input == '.'){
+        return;
+    }
+    currentNumber += input;
+    operationDisplay.textContent = previousNumber + ' ' + operation + ' ' + currentNumber;
+    answerDisplay.textContent = answer;
+}
 
 buttons.forEach(button => button.addEventListener('click', buttonpress))

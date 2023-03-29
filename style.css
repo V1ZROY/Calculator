@@ -1,3 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 #calculator {
     display: flex;
     flex-direction: column;
@@ -5,8 +11,9 @@
     width: clamp(300px, 30vw, 600px);
     height: clamp(450px, 50vw, 1000px);
     padding: 20px;
+    margin-top: 50px;
     border-radius: 5px;
-    background-color: beige;
+    background-color: #735d78;
 }
 
 #display {
@@ -14,14 +21,15 @@
     flex-direction: column;
     height: 25%;
     align-items: space-between;
-    border-width: 1px;
-    border: 1px solid black;
 }
 
 .displays {
-    margin: 2px;
-    height: 45%;
-    background-color: aquamarine;
+  border-radius: 5px;
+  margin: 2px;
+  height: 45%;
+  background-color: #f7d1cd;
+  text-align: right;
+  padding-right: 10px;
 }
 
 #buttons {
@@ -32,6 +40,62 @@
     gap: 8px;
 }
 
+button {
+  border-radius: 5px;
+  background-color: #f7d1cd;
+  border: none;
+}
+button:hover {
+  background-color: #e1eade;
+}
+
 .wide {
   grid-column: span 2;
 }
+
+.bg {
+    animation:slide 15s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #e8c2ca 50%, #b392ac 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:20s;
+  }
+  
+  .bg3 {
+    animation-duration:25s;
+  }
+  
+  .content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  
+  h1 {
+    font-family:monospace;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
