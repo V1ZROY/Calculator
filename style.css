@@ -8,13 +8,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: clamp(250px, 30vw, 600px);
-    height: clamp(400px, 50vw, 1000px);
+    width: clamp(250px, 30vw, 300px);
+    height: clamp(400px, 50vw, 500px);
     padding: 20px;
     margin-top: 50px;
     border-radius: 5px;
     background-color: #735d78;
 }
+
 
 #display {
     display: flex;
@@ -32,13 +33,15 @@ body {
   display: flex;
   justify-content: end;
   align-items: center;
+  font-size: larger;
+  font-weight: bold;
 }
 
 #answerDisplay {
   height: 35%;
-  font-weight: bold;
+  font-weight: bolder;
   background-color: #f7d1cd;
-  color: #272727;
+  color: #474747;
 }
 
 #operationDisplay {
@@ -46,14 +49,16 @@ body {
 }
 
 #buttons {
-    height: 70%;
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+  height: 70%;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
 }
 
 button {
+  font-size: larger;
+  font-weight: bold;
   border-radius: 5px;
   background-color: #f7d1cd;
   border: none;
