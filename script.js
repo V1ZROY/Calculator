@@ -30,6 +30,19 @@ function buttonpress(input){
 }
 
 function startOperation(operand){
+    if (currentNumber!=''&& operand!='='){
+        previousNumber = currentNumber;
+    }
+
+    if (answer!=''){
+        previousNumber = answer;
+    }
+
+    if (operation=='' && previousNumber!='' && operand!='='){
+        currentNumber = '';
+        operation = operand;
+        write('');
+    }
 
     if (operation=='' && currentNumber!='' && operand!='='){
         previousNumber = currentNumber;
@@ -49,41 +62,36 @@ function startOperation(operand){
             break;
             case '+': add(previousNumber, currentNumber); 
             break;
-            default: write('');
+        }
+        previousNumber = answer;
+        currentNumber = ''
+        operation = '';
+        if (operand!='='){
+            operation = operand;
         }
     }
+
+    write('');
 }
 
 function divide(x, y){
+    if (y == 0){
+        answer = 'You have broken the universe'
+        return;
+    }
     answer = x/y;
-    previousNumber = '';
-    operation = '';
-    currentNumber = answer;
-    write('');
 }
 
 function multiply(x, y){
     answer = x*y;
-    previousNumber = '';
-    operation = '';
-    currentNumber = answer;
-    write('');
 }
 
 function add(x, y){
     answer = parseInt(x)+parseInt(y);
-    previousNumber = '';
-    operation = '';
-    currentNumber = answer;
-    write('');
 }
 
 function subtract(x, y){
     answer = x-y;
-    previousNumber = '';
-    operation = '';
-    currentNumber = answer;
-    write('');
 }
 
 function clear(){
@@ -106,6 +114,11 @@ function write(input){
     if (currentNumber!= '' && currentNumber.toString().includes('.') && input == '.'){
         return;
     }
+
+    if (operation=='' && previousNumber!='' && previousNumber.toString()==answerDisplay.textContent){
+        return;
+    }
+
     currentNumber += input;
     operationDisplay.textContent = previousNumber + ' ' + operation + ' ' + currentNumber;
     answerDisplay.textContent = answer;
