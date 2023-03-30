@@ -116,6 +116,7 @@ function write(input){
     }
 
     if (operation=='' && previousNumber!='' && previousNumber.toString()==answerDisplay.textContent){
+        clear();
         return;
     }
 
